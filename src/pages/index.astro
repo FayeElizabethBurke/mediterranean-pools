@@ -1,0 +1,630 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+
+const stats = [
+  { value: '30+', label: 'Years Experience' },
+  { value: '200+', label: 'Pools Built' },
+  { value: '5★', label: 'Client Satisfaction' },
+  { value: 'SEQ', label: 'Brisbane & Beyond' },
+];
+
+const services = [
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>`,
+    title: 'Custom Concrete Pools',
+    desc: 'Fully bespoke inground pools designed around your block, lifestyle, and budget — built to last a lifetime.',
+    href: '/services#custom-pools',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>`,
+    title: 'Water Features',
+    desc: 'Water walls, fountains, and spillways that transform your pool into an architectural statement.',
+    href: '/services#water-features',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>`,
+    title: 'Coping & Surrounds',
+    desc: 'Travertine, marble, granite, and porcelain finishes that elevate the look of your whole outdoor area.',
+    href: '/services#coping-surrounds',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+    title: 'Pool Fencing',
+    desc: 'Safety-compliant frameless glass and panel fencing that adds elegance without breaking your view.',
+    href: '/services#pool-fencing',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`,
+    title: 'Pool Renovations',
+    desc: 'Breathe new life into an ageing pool — new finishes, coping, features, and updated equipment.',
+    href: '/services#pool-renovations',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>`,
+    title: 'Integrated Spas',
+    desc: 'A spa that flows seamlessly with your pool design — the ultimate year-round backyard experience.',
+    href: '/services#integrated-spas',
+  },
+];
+
+const galleryItems = [
+  { src: '/images/pool-1.jpg', title: 'Cashmere', desc: 'Glass & aluminium fencing, clean geometric lines', category: 'Modern' },
+  { src: '/images/pool-2.jpg', title: 'Corinda', desc: 'Marble coping with frameless glass fencing', category: 'Luxury' },
+  { src: '/images/pool-3.jpg', title: 'Hendra', desc: 'Water feature + automated pool cleaner', category: 'Family' },
+  { src: '/images/pool-4.jpg', title: 'Norman Park', desc: 'Out-of-ground block wall, stairs & glass fence', category: 'Modern' },
+  { src: '/images/pool-5.jpg', title: 'Mitchelton', desc: 'Mosaic tiles to waterline & highlight steps', category: 'Luxury' },
+  { src: '/images/pool-6.jpg', title: 'Tingalpa', desc: 'Mosaic waterline, steps & statement water feature', category: 'Family' },
+];
+
+const steps = [
+  { n: '1', title: 'Free Consultation', desc: "We visit your property, listen to your ideas, and assess your site — completely free." },
+  { n: '2', title: 'Custom Design', desc: "We create a tailored design and itemised quote built around your space and budget." },
+  { n: '3', title: 'Permits & Approvals', desc: "We handle all council permits and engineering certifications on your behalf." },
+  { n: '4', title: 'Expert Construction', desc: "Brad and our team build with precision, keeping you updated at every stage." },
+  { n: '5', title: 'Premium Finishing', desc: "Coping, tiling, fencing, water features — every detail attended to with care." },
+  { n: '6', title: 'Handover & Support', desc: "We walk you through your new pool and remain available for ongoing support." },
+];
+
+const faqs = [
+  {
+    q: 'How long does it take to build a concrete pool in Brisbane?',
+    a: 'Most custom concrete pools take 8–16 weeks from excavation to handover, depending on size, features, and council approval timelines. We provide a detailed project timeline at the quoting stage.',
+  },
+  {
+    q: 'Do you handle council approvals and permits?',
+    a: 'Yes — we manage all council approvals, building permits, and engineering certifications. We know the Queensland pool safety requirements inside out.',
+  },
+  {
+    q: 'What areas of Queensland do you service?',
+    a: 'We primarily service Brisbane and surrounds, including the Sunshine Coast, Gold Coast, and South East Queensland. Contact us with your suburb to confirm.',
+  },
+  {
+    q: "Why choose concrete over fibreglass?",
+    a: "Concrete pools offer unlimited shape, size, and finish options — the premium choice for custom designs. They're the most durable and can be built to suit virtually any backyard.",
+  },
+  {
+    q: 'How much does a custom concrete pool cost?',
+    a: "Brisbane concrete pools typically range from $40,000 to $150,000+ depending on size, shape, depth, finishes, and features. We provide transparent, itemised quotes — no hidden costs.",
+  },
+  {
+    q: 'Can you renovate my existing pool?',
+    a: "Absolutely. We specialise in full renovations — updating finishes, replacing coping, adding water features, upgrading equipment, and transforming dated pools.",
+  },
+];
+---
+
+<BaseLayout
+  title="Custom Concrete Pools Brisbane | Mediterranean Pools Qld"
+  description="Brisbane's premium custom concrete pool builders. Over 30 years experience delivering luxury inground pools, water features & pool fencing across Queensland. Free quotes."
+  keywords="concrete pools Brisbane, custom pools Queensland, inground pool builders Brisbane, luxury pools QLD, pool construction Brisbane"
+>
+  <Header />
+
+  <!-- ═══════════════════════════════════════════════
+       HERO — split layout, image right, form left
+  ════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-stretch" aria-label="Hero">
+
+    <!-- Left panel — content + form -->
+    <div class="relative z-10 w-full lg:w-[52%] flex items-center bg-white">
+      <div class="w-full max-w-xl mx-auto px-8 sm:px-12 lg:px-14 pt-28 pb-16">
+
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-aqua-50 border border-aqua-200 rounded-full px-4 py-1.5 mb-6">
+          <span class="w-2 h-2 bg-aqua-500 rounded-full animate-pulse flex-shrink-0"></span>
+          <span class="font-sans text-xs font-semibold text-aqua-700 tracking-wide uppercase">Brisbane & South East QLD</span>
+        </div>
+
+        <h1 class="font-serif text-navy-900 text-4xl sm:text-5xl leading-[1.1] mb-5">
+          Your Dream Pool,<br />
+          <em class="not-italic text-aqua-600">Crafted to Last</em>
+        </h1>
+
+        <p class="font-sans text-stone-500 text-lg leading-relaxed mb-4">
+          Premium custom concrete pools built with 30+ years of Queensland expertise, old-school values, and a genuine passion for exceptional outdoor living.
+        </p>
+
+        <!-- Trust row -->
+        <div class="flex flex-wrap gap-x-5 gap-y-2 mb-8">
+          {[
+            '30+ Years Experience',
+            'Family-Owned & Operated',
+            'Free Consultation',
+          ].map((badge) => (
+            <span class="flex items-center gap-1.5 font-sans text-sm text-stone-500">
+              <svg class="w-4 h-4 text-aqua-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              {badge}
+            </span>
+          ))}
+        </div>
+
+        <!-- Quote form card -->
+        <div class="bg-stone-50 rounded-2xl border border-stone-200 p-6 shadow-card">
+          <p class="font-serif text-navy-900 text-xl mb-1">Get Your Free Quote</p>
+          <p class="font-sans text-stone-500 text-sm mb-5">Response within 24 hours — no obligation.</p>
+
+          <form id="hero-form" action="https://formspree.io/f/xyzabcde" method="POST" class="space-y-3" novalidate>
+            <input type="hidden" name="_subject" value="New Pool Quote — Mediterranean Pools" />
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label for="h-name" class="form-label">Name *</label>
+                <input type="text" id="h-name" name="name" required autocomplete="name" placeholder="Your name" class="form-input" />
+              </div>
+              <div>
+                <label for="h-phone" class="form-label">Phone *</label>
+                <input type="tel" id="h-phone" name="phone" required autocomplete="tel" placeholder="04xx xxx xxx" class="form-input" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label for="h-email" class="form-label">Email *</label>
+                <input type="email" id="h-email" name="email" required autocomplete="email" placeholder="your@email.com" class="form-input" />
+              </div>
+              <div>
+                <label for="h-suburb" class="form-label">Suburb *</label>
+                <input type="text" id="h-suburb" name="suburb" required placeholder="e.g. Paddington" class="form-input" />
+              </div>
+            </div>
+
+            <div>
+              <label for="h-budget" class="form-label">Budget Range</label>
+              <select id="h-budget" name="budget" class="form-input text-stone-500">
+                <option value="" disabled selected>Select budget...</option>
+                {['Under $40k','$40k–$60k','$60k–$80k','$80k–$100k','$100k–$150k','$150k+','Not sure yet'].map((b) => (
+                  <option value={b}>{b}</option>
+                ))}
+              </select>
+            </div>
+
+            <button type="submit" class="btn-primary w-full py-3.5 text-sm justify-center">
+              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              Send My Free Quote Request
+            </button>
+            <p class="text-stone-400 text-xs text-center font-sans">No obligation · 100% confidential · Reply within 24 hrs</p>
+          </form>
+        </div>
+
+        <!-- Phone CTA -->
+        <div class="mt-5 flex items-center gap-3">
+          <div class="h-px flex-1 bg-stone-200"></div>
+          <span class="font-sans text-xs text-stone-400 uppercase tracking-widest">or call directly</span>
+          <div class="h-px flex-1 bg-stone-200"></div>
+        </div>
+        <a
+          href="tel:0403866061"
+          class="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-stone-200 bg-white hover:bg-stone-50 transition-colors font-sans text-sm font-semibold text-navy-700"
+        >
+          <svg class="w-4 h-4 text-aqua-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+          </svg>
+          Call Brad: 0403 866 061
+        </a>
+      </div>
+    </div>
+
+    <!-- Right panel — pool image -->
+    <div class="hidden lg:block lg:w-[48%] relative">
+      <img
+        src="/images/hero-pool.jpg"
+        alt="Luxury custom concrete pool Brisbane"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+        loading="eager"
+        fetchpriority="high"
+        width="960"
+        height="1080"
+      />
+      <!-- Subtle left-edge feather -->
+      <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+
+      <!-- Overlay badge -->
+      <div class="absolute bottom-10 left-8 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-hero max-w-[220px]">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-xl bg-aqua-500 flex items-center justify-center flex-shrink-0">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div>
+            <p class="font-sans font-semibold text-navy-900 text-sm leading-tight">Premium Quality</p>
+            <p class="font-sans text-stone-400 text-xs">Guaranteed workmanship</p>
+          </div>
+        </div>
+        <div class="flex gap-0.5">
+          {Array.from({length:5}).map(() => (
+            <svg class="w-3.5 h-3.5 text-sand-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+          <span class="font-sans text-xs text-stone-400 ml-1">5.0</span>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- /hero -->
+
+  <!-- ═══════════════════════════════════════════════
+       STATS BAR
+  ════════════════════════════════════════════════ -->
+  <section class="bg-navy-900 py-8" aria-label="Key statistics">
+    <div class="container-custom">
+      <dl class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        {stats.map((s) => (
+          <div class="animate-on-scroll">
+            <dt class="font-serif text-aqua-400 text-3xl sm:text-4xl leading-none mb-1">{s.value}</dt>
+            <dd class="font-sans text-stone-400 text-xs sm:text-sm tracking-wide">{s.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SERVICES
+  ════════════════════════════════════════════════ -->
+  <section class="py-20 bg-white" aria-labelledby="services-heading">
+    <div class="container-custom">
+      <div class="text-center mb-14 animate-on-scroll">
+        <p class="section-label mb-3">What We Build</p>
+        <h2 id="services-heading" class="section-heading mb-4 text-balance">
+          Complete Pool Solutions,<br class="hidden sm:block" /> Start to Finish
+        </h2>
+        <p class="font-sans text-stone-500 text-lg max-w-2xl mx-auto">
+          Everything you need to create your dream outdoor space — designed and built by the same trusted team.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
+        {services.map((s) => (
+          <a
+            href={s.href}
+            class="card-hover p-7 flex flex-col gap-4 group animate-on-scroll"
+            aria-label={s.title}
+          >
+            <div class="w-11 h-11 rounded-xl bg-aqua-50 flex items-center justify-center text-aqua-600 group-hover:bg-aqua-500 group-hover:text-white transition-colors duration-200 flex-shrink-0" set:html={s.icon} />
+            <div>
+              <h3 class="font-serif text-navy-900 text-xl mb-2 group-hover:text-aqua-700 transition-colors">{s.title}</h3>
+              <p class="font-sans text-stone-500 text-sm leading-relaxed">{s.desc}</p>
+            </div>
+            <div class="mt-auto flex items-center gap-1 font-sans text-aqua-600 text-sm font-semibold group-hover:gap-2 transition-all">
+              Learn more
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center mt-10 animate-on-scroll">
+        <a href="/services" class="btn-outline">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       GALLERY PREVIEW
+  ════════════════════════════════════════════════ -->
+  <section class="py-20 bg-stone-50" aria-labelledby="gallery-heading">
+    <div class="container-custom">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 animate-on-scroll">
+        <div>
+          <p class="section-label mb-2">Our Work</p>
+          <h2 id="gallery-heading" class="section-heading">
+            Dream Pools, <em class="not-italic text-aqua-600">Delivered</em>
+          </h2>
+        </div>
+        <a href="/gallery" class="btn-outline flex-shrink-0 self-start sm:self-auto">View All Projects</a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
+        {galleryItems.map((item) => (
+          <figure
+            class="relative overflow-hidden rounded-2xl cursor-pointer group animate-on-scroll"
+            data-lightbox
+            data-src={item.src}
+            data-caption={`${item.title} — ${item.desc}`}
+            role="button"
+            tabindex="0"
+            aria-label={`View ${item.title} pool project`}
+          >
+            <div class="aspect-[4/3] overflow-hidden bg-stone-200">
+              <img
+                src={item.src}
+                alt={`${item.title} pool — ${item.desc}`}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"
+                loading="lazy"
+                width="600"
+                height="450"
+              />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/75 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <figcaption class="absolute bottom-0 left-0 right-0 p-5">
+                <span class="inline-block bg-aqua-500 text-white text-xs font-semibold font-sans px-2.5 py-1 rounded-full mb-2">{item.category}</span>
+                <p class="font-serif text-white text-lg leading-tight">{item.title}</p>
+                <p class="font-sans text-white/70 text-xs mt-0.5">{item.desc}</p>
+              </figcaption>
+            </div>
+            <!-- Always-visible name tag -->
+            <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
+              <span class="font-sans text-navy-800 text-xs font-semibold">{item.title}</span>
+            </div>
+            <!-- Zoom hint -->
+            <div class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <svg class="w-4 h-4 text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+              </svg>
+            </div>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       WHY CHOOSE US
+  ════════════════════════════════════════════════ -->
+  <section class="py-20 bg-white" aria-labelledby="why-heading">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Image collage -->
+        <div class="grid grid-cols-2 gap-4 animate-on-scroll">
+          <div class="space-y-4">
+            <div class="rounded-2xl overflow-hidden aspect-[3/4] bg-stone-100">
+              <img src="/images/pool-gallery-1.png" alt="Custom pool with water feature" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
+            </div>
+            <div class="rounded-2xl overflow-hidden aspect-square bg-stone-100">
+              <img src="/images/pool-gallery-3.png" alt="Premium pool coping" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="300" />
+            </div>
+          </div>
+          <div class="space-y-4 mt-8">
+            <div class="rounded-2xl overflow-hidden aspect-square bg-stone-100">
+              <img src="/images/pool-gallery-2.png" alt="Glass fenced pool Brisbane" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="300" />
+            </div>
+            <div class="rounded-2xl overflow-hidden aspect-[3/4] bg-stone-100">
+              <img src="/images/pool-gallery-4.png" alt="Modern pool construction" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="animate-on-scroll">
+          <p class="section-label mb-3">Why Mediterranean Pools</p>
+          <h2 id="why-heading" class="section-heading mb-6">
+            The Difference is in<br />
+            <em class="not-italic text-aqua-600">the Details</em>
+          </h2>
+          <p class="font-sans text-stone-500 text-base leading-relaxed mb-8">
+            Building a pool is a significant investment. We understand that — and it's why we've built our entire business around transparency, genuine care, and uncompromising quality.
+          </p>
+
+          <div class="space-y-6">
+            {[
+              { title: '30+ Years of Craft', body: "Brad's decades of hands-on experience means you're getting deep expertise, not guesswork — reflected in every pool we build." },
+              { title: 'Fully Custom — No Shortcuts', body: 'Every pool is designed specifically for your block, lifestyle, and vision. No cookie-cutter shapes, no off-the-shelf finishes.' },
+              { title: 'Transparent Pricing', body: 'Detailed, itemised quotes upfront. No hidden costs, no nasty surprises at handover. Honest business, always.' },
+              { title: 'Local, Family-Owned', body: "South Brisbane based — we know Queensland's climate, soil, and council requirements. We're your neighbours, not a franchise." },
+            ].map((r, i) => (
+              <div class="flex gap-4">
+                <div class="w-8 h-8 rounded-full bg-aqua-50 border border-aqua-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="font-sans text-aqua-600 text-xs font-bold">0{i+1}</span>
+                </div>
+                <div>
+                  <h3 class="font-sans font-semibold text-navy-900 text-base mb-1">{r.title}</h3>
+                  <p class="font-sans text-stone-500 text-sm leading-relaxed">{r.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-9">
+            <a href="/about" class="btn-outline">Our Full Story</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       PROCESS — light bg with numbered steps
+  ════════════════════════════════════════════════ -->
+  <section class="py-20 bg-pool-light" aria-labelledby="process-heading">
+    <div class="container-custom">
+      <div class="text-center mb-14 animate-on-scroll">
+        <p class="section-label mb-3">How It Works</p>
+        <h2 id="process-heading" class="section-heading mb-4">
+          Your Pool, Step by Step
+        </h2>
+        <p class="font-sans text-stone-500 text-lg max-w-xl mx-auto">
+          A streamlined, stress-free process refined over 30+ years so you always know what's happening.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
+        {steps.map((s) => (
+          <div class="card p-7 flex gap-5 animate-on-scroll hover:shadow-card-lg transition-shadow duration-300">
+            <div class="w-10 h-10 rounded-full bg-aqua-500 text-white font-sans font-bold text-sm flex items-center justify-center flex-shrink-0 mt-0.5">{s.n}</div>
+            <div>
+              <h3 class="font-serif text-navy-900 text-lg mb-2">{s.title}</h3>
+              <p class="font-sans text-stone-500 text-sm leading-relaxed">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       TESTIMONIALS
+  ════════════════════════════════════════════════ -->
+  <section class="py-20 bg-white" aria-labelledby="testimonials-heading">
+    <div class="container-custom">
+      <div class="text-center mb-14 animate-on-scroll">
+        <p class="section-label mb-3">Client Stories</p>
+        <h2 id="testimonials-heading" class="section-heading">What Our Clients Say</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
+        {[
+          {
+            quote: "Brad and the team built us an absolutely stunning pool. The whole process was stress-free — they kept us informed every step of the way and the result exceeded our expectations.",
+            name: "Sarah & Michael T.",
+            suburb: "Norman Park, Brisbane",
+          },
+          {
+            quote: "We got quotes from four builders. Mediterranean Pools were the most honest about costs upfront, had the best ideas for our space, and delivered exactly what they promised.",
+            name: "James K.",
+            suburb: "Hendra, Brisbane",
+          },
+          {
+            quote: "The attention to detail is incredible. From the mosaic waterline tiles to the frameless glass fencing — every element was perfectly executed. Our backyard is transformed.",
+            name: "The Williams Family",
+            suburb: "Corinda, Brisbane",
+          },
+        ].map((t) => (
+          <blockquote class="card p-7 flex flex-col gap-4 animate-on-scroll">
+            <div class="flex gap-0.5" aria-label="5 star rating">
+              {Array.from({length:5}).map(() => (
+                <svg class="w-4 h-4 text-sand-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              ))}
+            </div>
+            <p class="font-sans text-stone-600 text-sm leading-relaxed italic flex-1">"{t.quote}"</p>
+            <footer>
+              <cite class="not-italic">
+                <p class="font-sans font-semibold text-navy-900 text-sm">{t.name}</p>
+                <p class="font-sans text-stone-400 text-xs">{t.suburb}</p>
+              </cite>
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FAQ
+  ════════════════════════════════════════════════ -->
+  <section class="py-20 bg-stone-50" aria-labelledby="faq-heading">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12 animate-on-scroll">
+          <p class="section-label mb-3">FAQ</p>
+          <h2 id="faq-heading" class="section-heading">
+            Questions About Pool Construction
+          </h2>
+        </div>
+
+        <div class="space-y-2">
+          {faqs.map((faq) => (
+            <div class="faq-item bg-white rounded-2xl border border-stone-200 overflow-hidden animate-on-scroll">
+              <button class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-stone-50 transition-colors" aria-expanded="false">
+                <span class="font-sans font-semibold text-navy-900 text-sm sm:text-base leading-snug">{faq.q}</span>
+                <span class="faq-icon w-7 h-7 rounded-full bg-aqua-50 text-aqua-600 text-xl flex items-center justify-center flex-shrink-0 leading-none font-light" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer">
+                <p class="font-sans text-stone-500 text-sm leading-relaxed px-6 pb-5">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FINAL CTA — one intentional dark section
+  ════════════════════════════════════════════════ -->
+  <section class="relative py-24 overflow-hidden bg-navy-900" aria-labelledby="cta-heading">
+    <!-- BG image -->
+    <div class="absolute inset-0">
+      <img src="/images/pool-2.jpg" alt="" class="w-full h-full object-cover opacity-20" loading="lazy" aria-hidden="true" width="1920" height="600" />
+      <div class="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-900/80 to-navy-900/60"></div>
+    </div>
+
+    <div class="relative z-10 container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <div class="animate-on-scroll">
+          <p class="section-label text-aqua-400 mb-3">Ready to Start?</p>
+          <h2 id="cta-heading" class="section-heading-white mb-5">
+            Let's Build Your<br />Dream Pool
+          </h2>
+          <p class="font-sans text-stone-300 text-lg leading-relaxed mb-8">
+            Free, no-obligation consultation. We'll assess your site, listen to your vision, and provide a detailed custom quote — all within 24 hours.
+          </p>
+          <div class="flex flex-wrap gap-4 items-center">
+            <a href="tel:0403866061" class="btn-primary">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              Call Brad: 0403 866 061
+            </a>
+            <a href="/contact" class="btn-white">Get a Quote Online</a>
+          </div>
+        </div>
+
+        <!-- Inline form on white card -->
+        <div class="animate-on-scroll">
+          <div class="bg-white rounded-2xl p-7 shadow-hero">
+            <h3 class="font-serif text-navy-900 text-xl mb-1">Request a Free Quote</h3>
+            <p class="font-sans text-stone-500 text-sm mb-5">We'll respond within 24 hours.</p>
+
+            <form action="https://formspree.io/f/xyzabcde" method="POST" class="space-y-4" novalidate>
+              <input type="hidden" name="_subject" value="New Pool Quote — Mediterranean Pools" />
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="c-name" class="form-label">Name *</label>
+                  <input type="text" id="c-name" name="name" required autocomplete="name" placeholder="Your name" class="form-input" />
+                </div>
+                <div>
+                  <label for="c-phone" class="form-label">Phone *</label>
+                  <input type="tel" id="c-phone" name="phone" required autocomplete="tel" placeholder="04xx xxx xxx" class="form-input" />
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="c-email" class="form-label">Email *</label>
+                  <input type="email" id="c-email" name="email" required placeholder="your@email.com" class="form-input" />
+                </div>
+                <div>
+                  <label for="c-suburb" class="form-label">Suburb *</label>
+                  <input type="text" id="c-suburb" name="suburb" required placeholder="e.g. Paddington" class="form-input" />
+                </div>
+              </div>
+              <div>
+                <label for="c-budget" class="form-label">Budget</label>
+                <select id="c-budget" name="budget" class="form-input text-stone-500">
+                  <option value="" disabled selected>Select budget...</option>
+                  {['Under $40k','$40k–$60k','$60k–$80k','$80k–$100k','$100k+','Not sure'].map((b) => (
+                    <option value={b}>{b}</option>
+                  ))}
+                </select>
+              </div>
+              <button type="submit" class="btn-primary w-full py-3.5 justify-center">Send My Free Quote</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button id="lightbox-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl flex items-center justify-center transition-colors z-10" aria-label="Close">×</button>
+    <img id="lightbox-img" src="" alt="" class="relative z-10" />
+    <p id="lightbox-caption" class="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/60 text-xs font-sans text-center max-w-md z-10 px-4"></p>
+  </div>
+
+</BaseLayout>

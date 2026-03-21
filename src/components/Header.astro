@@ -1,0 +1,192 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50">
+  <div
+    id="header-inner"
+    class={`transition-all duration-300 ${isHome ? 'bg-transparent' : 'bg-white shadow-xs border-b border-stone-100'}`}
+  >
+    <div class="container-custom">
+      <div class="flex items-center justify-between h-16 sm:h-18">
+
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 group" aria-label="Mediterranean Pools Qld — Home">
+          <div class="w-9 h-9 rounded-full overflow-hidden ring-2 ring-white/30 group-hover:ring-aqua-300 transition-colors flex-shrink-0">
+            <img src="/images/logo.png" alt="Mediterranean Pools Qld Logo" width="36" height="36" class="w-full h-full object-cover" />
+          </div>
+          <div class="leading-tight">
+            <span id="logo-name" class={`block font-serif text-lg leading-none transition-colors ${isHome ? 'text-white' : 'text-navy-900'}`}>
+              Mediterranean Pools
+            </span>
+            <span id="logo-sub" class={`block font-sans text-[10px] tracking-[0.2em] uppercase font-medium transition-colors ${isHome ? 'text-aqua-300' : 'text-aqua-600'}`}>
+              Queensland
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              id={`nav-${link.label.toLowerCase()}`}
+              class={`px-4 py-2 font-sans text-sm font-medium rounded-lg transition-all duration-150 nav-link ${
+                currentPath === link.href
+                  ? isHome ? 'text-white bg-white/15' : 'text-aqua-600 bg-aqua-50'
+                  : isHome ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-stone-600 hover:text-navy-900 hover:bg-stone-100'
+              }`}
+              aria-current={currentPath === link.href ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <!-- CTA row -->
+        <div class="flex items-center gap-3">
+          <a
+            href="tel:0403866061"
+            id="header-phone"
+            class={`hidden md:flex items-center gap-2 font-sans text-sm font-medium transition-colors ${isHome ? 'text-white/80 hover:text-white' : 'text-stone-600 hover:text-navy-900'}`}
+            aria-label="Call Brad on 0403 866 061"
+          >
+            <svg class="w-4 h-4 text-aqua-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            <span>0403 866 061</span>
+          </a>
+
+          <a href="/contact" class="btn-primary text-sm px-5 py-2.5 hidden sm:inline-flex">
+            Get a Free Quote
+          </a>
+
+          <!-- Mobile hamburger -->
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            class={`lg:hidden flex items-center justify-center w-10 h-10 rounded-xl transition-colors ${isHome ? 'text-white hover:bg-white/15' : 'text-navy-700 hover:bg-stone-100'}`}
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Toggle navigation"
+          >
+            <svg id="menu-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+      </div><!-- /flex row -->
+    </div><!-- /container -->
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+      <div class="bg-white border-t border-stone-100 shadow-card-lg px-4 pt-3 pb-5">
+        <nav class="flex flex-col gap-1 mb-4">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class={`px-4 py-3 font-sans text-sm font-medium rounded-xl transition-all ${
+                currentPath === link.href
+                  ? 'text-aqua-600 bg-aqua-50'
+                  : 'text-stone-700 hover:text-navy-900 hover:bg-stone-50'
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <div class="flex flex-col gap-2 pt-4 border-t border-stone-100">
+          <a href="tel:0403866061" class="flex items-center gap-2 px-4 py-2.5 text-stone-600 font-sans text-sm rounded-xl hover:bg-stone-50">
+            <svg class="w-4 h-4 text-aqua-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            Call Brad: 0403 866 061
+          </a>
+          <a href="/contact" class="btn-primary justify-center">Get a Free Quote</a>
+        </div>
+      </div>
+    </div>
+  </div><!-- /header-inner -->
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const inner  = document.getElementById('header-inner');
+  const logoName = document.getElementById('logo-name');
+  const logoSub  = document.getElementById('logo-sub');
+  const phone    = document.getElementById('header-phone');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  // Only animate scroll effect on homepage (where header starts transparent)
+  const isHome = window.location.pathname === '/' || window.location.pathname === '';
+
+  function updateHeader() {
+    if (!isHome) return;
+    const scrolled = window.scrollY > 60;
+
+    if (scrolled) {
+      inner?.classList.add('bg-white', 'shadow-xs', 'border-b', 'border-stone-100');
+      inner?.classList.remove('bg-transparent');
+      if (logoName) { logoName.classList.remove('text-white'); logoName.classList.add('text-navy-900'); }
+      if (logoSub)  { logoSub.classList.remove('text-aqua-300'); logoSub.classList.add('text-aqua-600'); }
+      if (phone)    { phone.classList.remove('text-white/80', 'hover:text-white'); phone.classList.add('text-stone-600', 'hover:text-navy-900'); }
+      navLinks.forEach((el) => {
+        if (!el.classList.contains('bg-aqua-50')) {
+          el.classList.remove('text-white/80', 'hover:text-white', 'hover:bg-white/10');
+          el.classList.add('text-stone-600', 'hover:text-navy-900', 'hover:bg-stone-100');
+        }
+      });
+    } else {
+      inner?.classList.remove('bg-white', 'shadow-xs', 'border-b', 'border-stone-100');
+      inner?.classList.add('bg-transparent');
+      if (logoName) { logoName.classList.add('text-white'); logoName.classList.remove('text-navy-900'); }
+      if (logoSub)  { logoSub.classList.add('text-aqua-300'); logoSub.classList.remove('text-aqua-600'); }
+      if (phone)    { phone.classList.add('text-white/80', 'hover:text-white'); phone.classList.remove('text-stone-600', 'hover:text-navy-900'); }
+      navLinks.forEach((el) => {
+        if (!el.classList.contains('bg-aqua-50')) {
+          el.classList.add('text-white/80', 'hover:text-white', 'hover:bg-white/10');
+          el.classList.remove('text-stone-600', 'hover:text-navy-900', 'hover:bg-stone-100');
+        }
+      });
+    }
+  }
+
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+
+  // Mobile menu
+  const btn  = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen  = document.getElementById('menu-open');
+  const iconClose = document.getElementById('menu-close');
+
+  btn?.addEventListener('click', () => {
+    const open = menu?.classList.contains('open');
+    menu?.classList.toggle('open', !open);
+    btn.setAttribute('aria-expanded', String(!open));
+    iconOpen?.classList.toggle('hidden', !open);
+    iconClose?.classList.toggle('hidden', open);
+  });
+
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn?.setAttribute('aria-expanded', 'false');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+</script>

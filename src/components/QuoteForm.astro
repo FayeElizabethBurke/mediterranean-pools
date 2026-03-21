@@ -1,0 +1,138 @@
+---
+export interface Props {
+  variant?: 'section' | 'page';
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  variant = 'section',
+  title = 'Get Your Free Pool Quote',
+  subtitle = "Tell us about your dream pool. We'll respond within 24 hours.",
+} = Astro.props;
+
+const FORMSPREE_ID = 'xyzabcde';
+
+const budgets = [
+  'Under $40,000',
+  '$40,000 – $60,000',
+  '$60,000 – $80,000',
+  '$80,000 – $100,000',
+  '$100,000 – $150,000',
+  '$150,000+',
+  'Not sure yet',
+];
+---
+
+{variant === 'section' && (
+  <div class="bg-white rounded-2xl border border-stone-200 shadow-card p-7">
+    {title && <h3 class="font-serif text-navy-900 text-xl mb-1">{title}</h3>}
+    {subtitle && <p class="font-sans text-stone-500 text-sm mb-5">{subtitle}</p>}
+
+    <form action={`https://formspree.io/f/${FORMSPREE_ID}`} method="POST" class="space-y-4" novalidate>
+      <input type="hidden" name="_subject" value="New Pool Quote — Mediterranean Pools" />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="sf-name" class="form-label">Full Name *</label>
+          <input type="text" id="sf-name" name="name" required autocomplete="name" placeholder="Your full name" class="form-input" />
+        </div>
+        <div>
+          <label for="sf-phone" class="form-label">Phone *</label>
+          <input type="tel" id="sf-phone" name="phone" required autocomplete="tel" placeholder="04xx xxx xxx" class="form-input" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="sf-email" class="form-label">Email *</label>
+          <input type="email" id="sf-email" name="email" required autocomplete="email" placeholder="your@email.com" class="form-input" />
+        </div>
+        <div>
+          <label for="sf-suburb" class="form-label">Suburb *</label>
+          <input type="text" id="sf-suburb" name="suburb" required placeholder="e.g. Paddington" class="form-input" />
+        </div>
+      </div>
+
+      <div>
+        <label for="sf-budget" class="form-label">Budget Range</label>
+        <select id="sf-budget" name="budget" class="form-input text-stone-500">
+          <option value="" disabled selected>Select approximate budget...</option>
+          {budgets.map((b) => <option value={b}>{b}</option>)}
+        </select>
+      </div>
+
+      <div>
+        <label for="sf-message" class="form-label">Project Details</label>
+        <textarea id="sf-message" name="message" rows="3" placeholder="Pool size, shape ideas, features you'd love..." class="form-input resize-none"></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary w-full py-3.5 justify-center">
+        Send My Free Quote Request
+      </button>
+      <p class="font-sans text-xs text-stone-400 text-center">No obligation · Response within 24 hours · 100% confidential</p>
+    </form>
+  </div>
+)}
+
+{variant === 'page' && (
+  <form action={`https://formspree.io/f/${FORMSPREE_ID}`} method="POST" class="space-y-5" novalidate>
+    <input type="hidden" name="_subject" value="New Pool Quote — Mediterranean Pools" />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="pf-name" class="form-label">Full Name *</label>
+        <input type="text" id="pf-name" name="name" required autocomplete="name" placeholder="Your full name" class="form-input" />
+      </div>
+      <div>
+        <label for="pf-phone" class="form-label">Phone Number *</label>
+        <input type="tel" id="pf-phone" name="phone" required autocomplete="tel" placeholder="04xx xxx xxx" class="form-input" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="pf-email" class="form-label">Email Address *</label>
+        <input type="email" id="pf-email" name="email" required autocomplete="email" placeholder="your@email.com" class="form-input" />
+      </div>
+      <div>
+        <label for="pf-suburb" class="form-label">Suburb / Location *</label>
+        <input type="text" id="pf-suburb" name="suburb" required placeholder="e.g. Paddington, Brisbane" class="form-input" />
+      </div>
+    </div>
+
+    <div>
+      <label for="pf-budget" class="form-label">Budget Range</label>
+      <select id="pf-budget" name="budget" class="form-input text-stone-500">
+        <option value="" disabled selected>Select approximate budget...</option>
+        {budgets.map((b) => <option value={b}>{b}</option>)}
+      </select>
+    </div>
+
+    <div>
+      <label for="pf-message" class="form-label">Tell Us About Your Project</label>
+      <textarea
+        id="pf-message"
+        name="message"
+        rows="5"
+        placeholder="Backyard size, pool shape ideas, features you'd love (spa, water feature, fencing), timeline..."
+        class="form-input resize-none"
+      ></textarea>
+    </div>
+
+    <div class="flex items-start gap-3">
+      <input type="checkbox" id="pf-consent" name="consent" required class="mt-1 w-4 h-4 rounded border-stone-300 text-aqua-500 focus:ring-aqua-400 flex-shrink-0" />
+      <label for="pf-consent" class="font-sans text-sm text-stone-500 leading-relaxed">
+        I agree to be contacted by Mediterranean Pools Qld. We respect your privacy and will never share your details.
+      </label>
+    </div>
+
+    <button type="submit" class="btn-primary w-full py-4 text-base justify-center">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+      </svg>
+      Send My Free Quote Request
+    </button>
+    <p class="font-sans text-sm text-stone-400 text-center">No obligation · Response within 24 hours · 100% confidential</p>
+  </form>
+)}

@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ───────────────────────────────────────────── */
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply font-sans text-navy-900 bg-white antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  h1, h2, h3, h4 { @apply font-serif; }
+
+  ::selection { @apply bg-aqua-100 text-navy-900; }
+
+  img { @apply max-w-full; }
+}
+
+/* ── Components ──────────────────────────────────────── */
+@layer components {
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5
+           bg-aqua-500 hover:bg-aqua-600 active:bg-aqua-700
+           text-white font-sans font-semibold text-sm
+           rounded-full
+           shadow-btn hover:shadow-btn-lg
+           transition-all duration-200
+           hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-aqua-400 focus:ring-offset-2;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5
+           bg-navy-900 hover:bg-navy-800
+           text-white font-sans font-semibold text-sm
+           rounded-full
+           shadow-card hover:shadow-card-lg
+           transition-all duration-200
+           hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-navy-400 focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5
+           bg-white border-2 border-navy-200
+           hover:border-aqua-500 hover:bg-aqua-50
+           text-navy-700 hover:text-aqua-700
+           font-sans font-semibold text-sm
+           rounded-full
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-aqua-400 focus:ring-offset-2;
+  }
+
+  .btn-white {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5
+           bg-white hover:bg-stone-50
+           text-navy-900
+           font-sans font-semibold text-sm
+           rounded-full
+           shadow-card
+           transition-all duration-200
+           hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-navy-800;
+  }
+
+  /* Labels & headings */
+  .section-label {
+    @apply font-sans font-semibold text-xs tracking-[0.18em] uppercase text-aqua-600;
+  }
+
+  .section-heading {
+    @apply font-serif text-navy-900 text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.15];
+  }
+
+  .section-heading-white {
+    @apply font-serif text-white text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.15];
+  }
+
+  /* Layout */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-stone-100;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300;
+  }
+
+  /* Form elements */
+  .form-label {
+    @apply block font-sans text-sm font-medium text-navy-700 mb-1.5;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3
+           bg-white border border-stone-200
+           rounded-xl
+           font-sans text-sm text-navy-900
+           placeholder-stone-400
+           focus:outline-none focus:ring-2 focus:ring-aqua-400 focus:border-aqua-400
+           transition-all duration-150;
+  }
+
+  .form-input-dark {
+    @apply w-full px-4 py-3
+           bg-white/10 backdrop-blur-sm
+           border border-white/20
+           rounded-xl
+           font-sans text-sm text-white
+           placeholder-white/50
+           focus:outline-none focus:ring-2 focus:ring-aqua-300 focus:border-aqua-300 focus:bg-white/15
+           transition-all duration-150;
+  }
+
+  /* Divider dot */
+  .dot-divider {
+    @apply w-1.5 h-1.5 rounded-full bg-aqua-400 inline-block;
+  }
+}
+
+/* ── Utilities ───────────────────────────────────────── */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  .bg-dots {
+    background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(11,26,43,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11,26,43,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* ── Scroll animations ──────────────────────────────── */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children .animate-on-scroll:nth-child(1) { transition-delay: 0.00s; }
+.stagger-children .animate-on-scroll:nth-child(2) { transition-delay: 0.08s; }
+.stagger-children .animate-on-scroll:nth-child(3) { transition-delay: 0.16s; }
+.stagger-children .animate-on-scroll:nth-child(4) { transition-delay: 0.24s; }
+.stagger-children .animate-on-scroll:nth-child(5) { transition-delay: 0.32s; }
+.stagger-children .animate-on-scroll:nth-child(6) { transition-delay: 0.40s; }
+
+/* ── Mobile menu ─────────────────────────────────────── */
+#mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.32s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease-out;
+}
+
+#mobile-menu.open {
+  max-height: 520px;
+  opacity: 1;
+}
+
+/* ── Lightbox ────────────────────────────────────────── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(6,14,24,0.94);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  padding: 1.5rem;
+}
+
+.lightbox.active { display: flex; }
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  cursor: default;
+}
+
+/* ── FAQ accordion ───────────────────────────────────── */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.36s cubic-bezier(0.22,1,0.36,1);
+}
+
+.faq-answer.open { max-height: 500px; }
+
+/* ── Gallery filter animation ────────────────────────── */
+.gallery-item {
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}

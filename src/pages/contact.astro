@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+
+const faqs = [
+  {
+    q: 'How quickly will you respond to my enquiry?',
+    a: 'We aim to respond to all enquiries within 24 hours. For urgent matters, call Brad directly on 0403 866 061.',
+  },
+  {
+    q: 'Is the initial consultation free?',
+    a: "Absolutely — our site consultation is completely free and obligation-free. We'll visit your property, discuss your vision, and provide a detailed custom quote.",
+  },
+  {
+    q: 'Do you service my area?',
+    a: 'We primarily service Brisbane and surrounds, including South East Queensland, the Sunshine Coast, and Gold Coast. Contact us with your suburb to confirm.',
+  },
+  {
+    q: 'What should I prepare before contacting you?',
+    a: "It helps to have a rough idea of your block size, budget range, and any pool ideas — but don't worry if you're still figuring it out. We're happy to guide you from scratch.",
+  },
+];
+---
+
+<BaseLayout
+  title="Contact Us — Get a Free Pool Quote | Mediterranean Pools Qld"
+  description="Contact Mediterranean Pools Qld for a free, no-obligation pool quote. Call Brad on 0403 866 061 or fill out our online enquiry form. Brisbane & South East QLD."
+  keywords="contact Mediterranean Pools, pool quote Brisbane, free pool consultation QLD, pool builder enquiry Brisbane"
+>
+  <Header />
+
+  <!-- Page hero — light -->
+  <section class="relative pt-28 pb-14 bg-white">
+    <div class="absolute inset-0 bg-dots opacity-50"></div>
+    <div class="relative z-10 container-custom">
+      <div class="max-w-2xl">
+        <p class="section-label mb-4 animate-fade-up" style="opacity:0;animation-fill-mode:forwards;">Get In Touch</p>
+        <h1 class="section-heading mb-4 animate-fade-up" style="animation-delay:0.1s;opacity:0;animation-fill-mode:forwards;">
+          Get Your Free<br />
+          <em class="not-italic text-aqua-600">Pool Quote</em>
+        </h1>
+        <p class="font-sans text-stone-500 text-lg animate-fade-up" style="animation-delay:0.2s;opacity:0;animation-fill-mode:forwards;">
+          No obligation. No pressure. Just an honest conversation about your dream pool. We respond within 24 hours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact content -->
+  <section class="py-16 bg-stone-50">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+
+        <!-- Left: Contact info -->
+        <div class="lg:col-span-2 animate-on-scroll">
+          <h2 class="font-serif text-navy-900 text-2xl mb-2">Speak Directly with Brad</h2>
+          <p class="font-sans text-stone-500 text-sm leading-relaxed mb-8">
+            Prefer to talk? Brad is available to discuss your project personally. No sales pitch — just straight answers from 30+ years in the industry.
+          </p>
+
+          <!-- Contact cards -->
+          <div class="space-y-3 mb-8">
+            <a
+              href="tel:0403866061"
+              class="flex items-center gap-4 p-4 bg-white rounded-2xl border border-stone-200 hover:border-aqua-300 hover:bg-aqua-50 transition-all group"
+            >
+              <div class="w-11 h-11 rounded-xl bg-aqua-50 flex items-center justify-center flex-shrink-0 group-hover:bg-aqua-100 transition-colors">
+                <svg class="w-5 h-5 text-aqua-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-sans text-xs text-stone-400 uppercase tracking-wider mb-0.5">Phone</p>
+                <p class="font-sans font-semibold text-navy-900 text-base">0403 866 061</p>
+                <p class="font-sans text-stone-400 text-xs">Mon–Fri, 7am–5pm</p>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-4 p-4 bg-white rounded-2xl border border-stone-200">
+              <div class="w-11 h-11 rounded-xl bg-aqua-50 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-aqua-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-sans text-xs text-stone-400 uppercase tracking-wider mb-0.5">Location</p>
+                <p class="font-sans font-semibold text-navy-900 text-base">South Brisbane, QLD</p>
+                <p class="font-sans text-stone-400 text-xs">Servicing all South East QLD</p>
+              </div>
+            </div>
+
+            <a
+              href="https://www.facebook.com/mediterraneanpoolsqld"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 p-4 bg-white rounded-2xl border border-stone-200 hover:border-blue-300 hover:bg-blue-50 transition-all group"
+            >
+              <div class="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-sans text-xs text-stone-400 uppercase tracking-wider mb-0.5">Facebook</p>
+                <p class="font-sans font-semibold text-navy-900 text-base">@mediterraneanpoolsqld</p>
+                <p class="font-sans text-stone-400 text-xs">See our latest projects</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Service areas -->
+          <div class="bg-white rounded-2xl border border-stone-200 p-5">
+            <p class="font-sans font-semibold text-navy-800 text-sm mb-3">Service Areas</p>
+            <div class="flex flex-wrap gap-1.5">
+              {['Brisbane CBD','South Brisbane','Paddington','Ascot','Hendra','Norman Park','Corinda','Mitchelton','Cashmere','Tingalpa','Rochdale','Sunshine Coast','Gold Coast'].map((area) => (
+                <span class="bg-stone-50 text-stone-600 text-xs font-sans px-2.5 py-1 rounded-full border border-stone-200">{area}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="lg:col-span-3 animate-on-scroll">
+          <div class="bg-white rounded-3xl border border-stone-200 shadow-card-lg p-8">
+            <h2 class="font-serif text-navy-900 text-2xl mb-1">Request Your Free Quote</h2>
+            <p class="font-sans text-stone-500 text-sm mb-7">Brad will be in touch within 24 hours.</p>
+            <QuoteForm variant="page" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 bg-white" aria-labelledby="contact-faq-heading">
+    <div class="container-custom max-w-2xl">
+      <div class="text-center mb-10 animate-on-scroll">
+        <h2 id="contact-faq-heading" class="font-serif text-navy-900 text-2xl">Common Questions</h2>
+      </div>
+      <div class="space-y-2">
+        {faqs.map((faq) => (
+          <div class="faq-item bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden animate-on-scroll">
+            <button class="faq-trigger w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-stone-100 transition-colors" aria-expanded="false">
+              <span class="font-sans font-semibold text-navy-900 text-sm leading-snug">{faq.q}</span>
+              <span class="faq-icon w-7 h-7 rounded-full bg-aqua-50 text-aqua-600 text-xl flex items-center justify-center flex-shrink-0 leading-none" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p class="font-sans text-stone-500 text-sm leading-relaxed px-5 pb-4">{faq.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

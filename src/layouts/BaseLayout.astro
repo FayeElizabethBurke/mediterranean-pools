@@ -1,0 +1,229 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  pageType?: 'website' | 'article';
+  keywords?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/images/hero-pool.jpg',
+  canonicalURL = Astro.url.pathname,
+  pageType = 'website',
+  keywords = 'concrete pools Brisbane, custom pools Queensland, pool builders Brisbane, inground pools QLD, luxury pools Brisbane',
+} = Astro.props;
+
+const siteURL = 'https://mediterraneanpoolsqld.com.au';
+const fullTitle = title.includes('Mediterranean Pools') ? title : `${title} | Mediterranean Pools Qld`;
+const fullCanonical = `${siteURL}${canonicalURL}`;
+const fullOGImage = ogImage.startsWith('http') ? ogImage : `${siteURL}${ogImage}`;
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${siteURL}/#business`,
+  "name": "Mediterranean Pools Qld PTY Ltd",
+  "description": "Premium custom concrete pool builders in Brisbane, QLD. Family-owned, 30+ years experience. Inground pools, water features, pool fencing and renovations.",
+  "url": siteURL,
+  "telephone": "+61403866061",
+  "email": "info@mediterraneanpoolsqld.com.au",
+  "image": `${siteURL}/images/hero-pool.jpg`,
+  "logo": `${siteURL}/images/logo.png`,
+  "priceRange": "$$$$",
+  "currenciesAccepted": "AUD",
+  "paymentAccepted": "Cash, Credit Card, Bank Transfer",
+  "founder": {
+    "@type": "Person",
+    "name": "Brad",
+    "jobTitle": "Director & Lead Pool Builder"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "South Brisbane",
+    "addressRegion": "QLD",
+    "addressCountry": "AU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -27.4827,
+    "longitude": 153.0239
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Brisbane" },
+    { "@type": "City", "name": "Sunshine Coast" },
+    { "@type": "City", "name": "Gold Coast" },
+    { "@type": "State", "name": "Queensland" }
+  ],
+  "serviceType": [
+    "Concrete Pool Construction",
+    "Custom Pool Design",
+    "Pool Renovations",
+    "Water Features",
+    "Pool Fencing",
+    "Pool Coping & Surrounds"
+  ],
+  "sameAs": [
+    "https://www.facebook.com/mediterraneanpoolsqld",
+    "https://www.instagram.com/mediterraneanpoolsqld"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en-AU" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary Meta -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content="Mediterranean Pools Qld PTY Ltd" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={fullCanonical} />
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#0A1628" />
+  <meta name="msapplication-TileColor" content="#0A1628" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={pageType} />
+  <meta property="og:url" content={fullCanonical} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={fullOGImage} />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
+  <meta property="og:site_name" content="Mediterranean Pools Qld" />
+  <meta property="og:locale" content="en_AU" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={fullCanonical} />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={fullOGImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
+
+  <!-- Fonts (preloaded) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" />
+
+  <!-- Sitemap -->
+  <link rel="sitemap" href="/sitemap.xml" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+</head>
+
+<body class="bg-white text-navy-900">
+  <slot />
+
+  <!-- Scroll Animation Observer -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
+
+  <!-- FAQ Accordion -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.faq-trigger').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const answer = item?.querySelector('.faq-answer');
+          const icon = btn.querySelector('.faq-icon');
+          const isOpen = answer?.classList.contains('open');
+
+          // Close all
+          document.querySelectorAll('.faq-answer').forEach((a) => a.classList.remove('open'));
+          document.querySelectorAll('.faq-icon').forEach((i) => {
+            i.textContent = '+';
+            i.classList.remove('rotate-45');
+          });
+
+          if (!isOpen && answer && icon) {
+            answer.classList.add('open');
+            icon.textContent = '×';
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Gallery Lightbox -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+
+      document.querySelectorAll('[data-lightbox]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const imgEl = /** @type {HTMLImageElement} */ (el);
+          const src = el.getAttribute('data-src') || imgEl.src || '';
+          const caption = el.getAttribute('data-caption') || '';
+          if (lightboxImg && lightbox) {
+            /** @type {HTMLImageElement} */ (lightboxImg).src = src;
+            if (lightboxCaption) lightboxCaption.textContent = caption;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          const target = /** @type {HTMLElement} */ (e.target);
+          if (e.target === lightbox || target.id === 'lightbox-close') {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox?.classList.contains('active')) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

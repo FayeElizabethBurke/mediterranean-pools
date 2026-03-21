@@ -1,0 +1,235 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+
+const services = [
+  {
+    id: 'custom-pools',
+    title: 'Custom Concrete Pools',
+    tagline: 'The ultimate in pool personalisation',
+    desc: 'Concrete is the premium choice for inground pool construction — and for good reason. Unlike fibreglass pools that come in set shapes and sizes, a concrete pool can be built to any shape, depth, or configuration your backyard demands.',
+    features: [
+      'Any shape — freeform, geometric, or lap pools',
+      'Any depth: shallow play areas to deep diving zones',
+      'Built for narrow, sloped, or irregular blocks',
+      'Premium finishes: pebblecrete, render, mosaic tiles',
+      'Integrated benches, ledges & lounge areas',
+      'All structural and engineering requirements handled',
+    ],
+    image: '/images/pool-1.jpg',
+    imageAlt: 'Custom concrete inground pool Brisbane',
+  },
+  {
+    id: 'water-features',
+    title: 'Water Features',
+    tagline: 'Where architecture meets water',
+    desc: 'A well-designed water feature transforms a pool from a simple backyard addition into a statement piece. From sleek water walls and cascading spillways to natural-look rock falls, we build features that perfectly complement your design.',
+    features: [
+      'Water walls and infinity edge effects',
+      'Natural rock formations and waterfalls',
+      'Blade and sheet water spillways',
+      'Automated controls integrated with pool system',
+      'Custom LED lighting for night-time ambience',
+      'Colour-changing illumination options',
+    ],
+    image: '/images/pool-3.jpg',
+    imageAlt: 'Custom pool water feature Brisbane',
+  },
+  {
+    id: 'coping-surrounds',
+    title: 'Coping & Surrounds',
+    tagline: 'Premium finishes that frame your pool beautifully',
+    desc: "The coping and surrounds are among the first things people notice. We source from Queensland's leading suppliers to offer an extensive range of premium materials that complement both your pool and your home's architecture.",
+    features: [
+      'Travertine — natural, cool underfoot, timeless look',
+      'Marble — ultimate luxury, elegant veining',
+      'Granite — durable, striking, premium appeal',
+      'Limestone — soft, warm tones, classic Queensland style',
+      'Porcelain — modern, low maintenance, fade resistant',
+      'Sandstone — natural Australian aesthetic',
+    ],
+    image: '/images/pool-2.jpg',
+    imageAlt: 'Premium pool coping and surrounds Brisbane',
+  },
+  {
+    id: 'pool-fencing',
+    title: 'Pool Fencing',
+    tagline: 'Safety without compromise on style',
+    desc: "Queensland has strict pool safety regulations, and rightly so. Our fencing solutions meet all QLD safety requirements while looking exceptional — whether you prefer the open view of frameless glass or the privacy of panel fencing.",
+    features: [
+      'Frameless glass — unobstructed views, sleek lines',
+      'Semi-frameless glass — elegant and great value',
+      'Aluminium panel fencing — durable, low maintenance',
+      'Custom gate and latch solutions',
+      'Full QLD Pool Safety compliance guaranteed',
+      'Council approval assistance included',
+    ],
+    image: '/images/pool-4.jpg',
+    imageAlt: 'Pool fencing Brisbane Queensland',
+  },
+  {
+    id: 'pool-renovations',
+    title: 'Pool Renovations',
+    tagline: 'Bringing your old pool back to life',
+    desc: "An ageing pool doesn't have to stay that way. We specialise in comprehensive renovations that can completely transform a tired, dated pool into something you're proud of — from cosmetic upgrades to full structural repairs.",
+    features: [
+      'New pebblecrete or tile interior finishes',
+      'Coping and surround replacement',
+      'Waterline tile replacement or upgrade',
+      'Addition of water features or spa',
+      'New fencing and updated surrounds',
+      'Equipment upgrades: pumps, filters, chlorinators',
+    ],
+    image: '/images/pool-5.jpg',
+    imageAlt: 'Pool renovation Brisbane QLD',
+  },
+  {
+    id: 'integrated-spas',
+    title: 'Integrated Spas',
+    tagline: 'Relaxation built right into your design',
+    desc: 'Adding an integrated spa creates the ultimate backyard retreat. Our spas flow seamlessly with your pool — sharing filtration where possible — making them both beautiful and practical year-round.',
+    features: [
+      'Seamless pool-to-spa design integration',
+      'Negative edge overflow options',
+      'Bench seating and hydrotherapy jets',
+      'Shared or independent heating systems',
+      'Lighting and water feature integration',
+      'Automated temperature controls',
+    ],
+    image: '/images/pool-6.jpg',
+    imageAlt: 'Integrated pool and spa Brisbane',
+  },
+];
+
+const brands = [
+  { name: "O'Sullivan's Pool Interiors", desc: 'Premium pool finishes — pebbles, render, and interior coatings in a wide range of colours.' },
+  { name: 'The Pool Tile Company', desc: 'Extensive range of premium tiles, coping, and surround options for every style and budget.' },
+  { name: 'Legend Pool Products', desc: 'Pumps, filters, salt water chlorinators, and pool automation equipment.' },
+];
+---
+
+<BaseLayout
+  title="Pool Construction Services Brisbane | Mediterranean Pools Qld"
+  description="Complete pool construction services in Brisbane — custom concrete pools, water features, pool fencing, coping & surrounds, renovations, and integrated spas. Free quotes."
+  keywords="pool construction services Brisbane, concrete pool builders QLD, pool fencing Brisbane, pool renovation QLD, water features Brisbane"
+>
+  <Header />
+
+  <!-- Page hero — light -->
+  <section class="relative pt-28 pb-16 bg-white overflow-hidden">
+    <div class="absolute inset-0 bg-dots opacity-50"></div>
+    <div class="relative z-10 container-custom">
+      <div class="max-w-3xl">
+        <p class="section-label mb-4 animate-fade-up" style="opacity:0;animation-fill-mode:forwards;">Full-Service Pool Construction</p>
+        <h1 class="section-heading mb-5 animate-fade-up" style="animation-delay:0.1s;opacity:0;animation-fill-mode:forwards;">
+          Everything Your Backyard<br />
+          <em class="not-italic text-aqua-600">Deserves</em>
+        </h1>
+        <p class="font-sans text-stone-500 text-xl max-w-2xl animate-fade-up" style="animation-delay:0.2s;opacity:0;animation-fill-mode:forwards;">
+          From initial design to final handover — a complete end-to-end service so you don't have to coordinate multiple contractors.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services list -->
+  <section class="py-16 bg-stone-50">
+    <div class="container-custom">
+      <div class="space-y-20">
+        {services.map((service, i) => (
+          <article id={service.id} class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-on-scroll">
+            <div class={`rounded-3xl overflow-hidden aspect-[4/3] bg-stone-200 shadow-card ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <img
+                src={service.image}
+                alt={service.imageAlt}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                width="700"
+                height="525"
+              />
+            </div>
+
+            <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
+              <p class="section-label mb-3">{service.tagline}</p>
+              <h2 class="section-heading mb-5">{service.title}</h2>
+              <p class="font-sans text-stone-500 text-base leading-relaxed mb-7">{service.desc}</p>
+
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
+                {service.features.map((f) => (
+                  <li class="flex items-start gap-2.5 font-sans text-stone-600 text-sm">
+                    <svg class="w-4 h-4 text-aqua-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a href="/contact" class="btn-primary">
+                Enquire About This Service
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted brands -->
+  <section class="py-14 bg-white" aria-labelledby="brands-heading">
+    <div class="container-custom">
+      <div class="text-center mb-10 animate-on-scroll">
+        <p class="section-label mb-2">Trusted Suppliers</p>
+        <h2 id="brands-heading" class="font-serif text-navy-900 text-2xl">Premium Materials from Industry Leaders</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 stagger-children">
+        {brands.map((b) => (
+          <div class="card p-6 text-center animate-on-scroll">
+            <div class="w-10 h-10 rounded-xl bg-aqua-50 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-5 h-5 text-aqua-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-navy-900 text-lg mb-2">{b.name}</h3>
+            <p class="font-sans text-stone-500 text-sm leading-relaxed">{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-navy-900 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/pool-1.jpg" alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" loading="lazy" width="1920" height="500" />
+      <div class="absolute inset-0 bg-navy-900/80"></div>
+    </div>
+    <div class="relative z-10 container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-on-scroll">
+          <p class="section-label text-aqua-400 mb-3">Get Started Today</p>
+          <h2 class="section-heading-white mb-5">Tell Us About Your Pool Project</h2>
+          <p class="font-sans text-stone-300 text-base leading-relaxed mb-6">
+            Whether you have a fully formed vision or just a vague idea, we'd love to hear about your project. We'll guide you through every option and create a design that exceeds your expectations.
+          </p>
+          <a href="tel:0403866061" class="btn-primary">
+            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            Call Brad: 0403 866 061
+          </a>
+        </div>
+        <div class="animate-on-scroll">
+          <QuoteForm variant="section" title="Request a Free Quote" subtitle="Detailed response within 24 hours." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

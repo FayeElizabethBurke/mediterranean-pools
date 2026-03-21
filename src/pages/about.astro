@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const values = [
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+    title: 'Integrity',
+    desc: 'Doing the right thing — by our clients, our team, and our community. Honest advice, honest pricing, every time.',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>`,
+    title: 'Craftsmanship',
+    desc: 'A relentless pursuit of quality in every detail — from the concrete shell to the last tile on the coping.',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+    title: 'Collaboration',
+    desc: 'Your vision drives everything. We listen carefully, communicate clearly, and work alongside you from day one.',
+  },
+  {
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    title: 'Reliability',
+    desc: 'We follow through on our promises. Timelines kept, updates given, work completed as agreed — no surprises.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Us | Mediterranean Pools Qld"
+  description="Family-owned Brisbane pool builders with 30+ years experience. Meet Brad and the Mediterranean Pools team — delivering premium custom concrete pools across Queensland."
+  keywords="about Mediterranean Pools, Brisbane pool builders, Brad pool builder QLD, family owned pool company"
+>
+  <Header />
+
+  <!-- Page hero — light with image behind -->
+  <section class="relative pt-28 pb-16 bg-white overflow-hidden">
+    <div class="absolute inset-0 bg-dots opacity-60"></div>
+    <div class="relative z-10 container-custom">
+      <div class="max-w-3xl">
+        <p class="section-label mb-4 animate-fade-up" style="opacity:0;animation-fill-mode:forwards;">Our Story</p>
+        <h1 class="section-heading mb-5 animate-fade-up" style="animation-delay:0.1s;opacity:0;animation-fill-mode:forwards;">
+          Passionate Pool Builders.<br />
+          <em class="not-italic text-aqua-600">Queensland Made.</em>
+        </h1>
+        <p class="font-sans text-stone-500 text-xl max-w-2xl animate-fade-up" style="animation-delay:0.2s;opacity:0;animation-fill-mode:forwards;">
+          More than builders — we're creators of personal escapes. Family-owned, South Brisbane based, and driven by a genuine passion for exceptional outdoor living.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story section -->
+  <section class="py-20 bg-stone-50">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <div class="animate-on-scroll rounded-3xl overflow-hidden shadow-card-lg aspect-[4/3] bg-stone-200">
+          <img src="/images/about-pool.png" alt="Mediterranean Pools custom build" class="w-full h-full object-cover" loading="lazy" width="700" height="525" />
+        </div>
+
+        <div class="animate-on-scroll">
+          <p class="section-label mb-3">Who We Are</p>
+          <h2 class="section-heading mb-6">
+            Old School Values,<br />
+            <em class="not-italic text-aqua-600">New School Ideas</em>
+          </h2>
+          <div class="space-y-4 font-sans text-stone-500 text-base leading-relaxed">
+            <p>
+              At Mediterranean Pools, we're passionate about turning dreams into reality. More than just pool builders, we see ourselves as creators of personal escapes — luxury sanctuaries designed with care, quality, and a deep understanding of our clients' lifestyles.
+            </p>
+            <p>
+              We're a local, family-owned business based in South Brisbane, serving the Brisbane metropolitan area and surrounding regions. Our foundation is built on old-school values: hard work, honesty, and a commitment to doing the job right.
+            </p>
+            <p>
+              Led by Brad — with over 30 years of hands-on experience — our team combines deep knowledge with modern innovation. Every pool we build reflects Brad's personal commitment to quality, precision, and pride in the craft.
+            </p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-8">
+            {[
+              { value: '30+', label: 'Years in the industry' },
+              { value: '200+', label: 'Pools completed' },
+              { value: 'SEQ', label: 'South Brisbane based' },
+            ].map((s) => (
+              <div>
+                <p class="font-serif text-3xl text-aqua-600">{s.value}</p>
+                <p class="font-sans text-stone-500 text-sm mt-0.5">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core values -->
+  <section class="py-20 bg-white" aria-labelledby="values-heading">
+    <div class="container-custom">
+      <div class="text-center mb-14 animate-on-scroll">
+        <p class="section-label mb-3">What We Stand For</p>
+        <h2 id="values-heading" class="section-heading mb-4">Our Core Values</h2>
+        <p class="font-sans text-stone-500 text-lg max-w-xl mx-auto">
+          These aren't marketing words. They're the principles Brad built this business on from day one.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 stagger-children">
+        {values.map((v) => (
+          <div class="card-hover p-8 flex gap-5 animate-on-scroll">
+            <div class="w-11 h-11 rounded-xl bg-aqua-50 flex items-center justify-center flex-shrink-0 text-aqua-600"
+                 set:html={v.icon} />
+            <div>
+              <h3 class="font-serif text-navy-900 text-xl mb-2">{v.title}</h3>
+              <p class="font-sans text-stone-500 text-sm leading-relaxed">{v.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section class="py-20 bg-pool-light">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <div class="animate-on-scroll">
+          <p class="section-label mb-3">The Mediterranean Pools Difference</p>
+          <h2 class="section-heading mb-6">
+            A Process Built<br />Around <em class="not-italic text-aqua-600">You</em>
+          </h2>
+          <p class="font-sans text-stone-500 text-base leading-relaxed mb-8">
+            Creating a pool is a significant investment — financially and emotionally. That's why we make the journey all about you — your vision, your lifestyle, your goals.
+          </p>
+
+          <ul class="space-y-3.5">
+            {[
+              'Collaborative, stress-free process from start to finish',
+              'Honest advice backed by decades of hands-on experience',
+              'Fully customised concrete pools and outdoor solutions',
+              'High-quality finishes and materials built to last',
+              'Transparent, itemised pricing — no hidden costs',
+              'A team who genuinely cares about getting it right',
+              'Local knowledge of Brisbane soil, climate & council rules',
+            ].map((point) => (
+              <li class="flex items-start gap-3 font-sans text-stone-600 text-sm">
+                <svg class="w-4 h-4 text-aqua-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="animate-on-scroll rounded-3xl overflow-hidden shadow-card-lg aspect-[3/4] bg-stone-200">
+          <img src="/images/pool-feature.png" alt="Premium pool construction in Queensland" class="w-full h-full object-cover" loading="lazy" width="500" height="667" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-navy-900 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/pool-1.jpg" alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" loading="lazy" width="1920" height="500" />
+      <div class="absolute inset-0 bg-navy-900/80"></div>
+    </div>
+    <div class="relative z-10 container-custom text-center animate-on-scroll">
+      <p class="section-label text-aqua-400 mb-3">Start Your Journey</p>
+      <h2 class="section-heading-white mb-5">Ready to Create Your Perfect Pool?</h2>
+      <p class="font-sans text-stone-300 text-lg max-w-xl mx-auto mb-8">
+        Book a free, no-obligation consultation with Brad. We'll visit your site, listen to your vision, and create a custom plan just for you.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="btn-primary px-8 py-4">Get a Free Quote</a>
+        <a href="tel:0403866061" class="btn-white px-8 py-4">Call Brad: 0403 866 061</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

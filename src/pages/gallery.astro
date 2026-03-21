@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+  {
+    src: '/images/pool-1.jpg',
+    title: 'Cashmere',
+    desc: 'Glass and aluminium flat-top fenced pool with crisp geometric lines and pristine white interior finish.',
+    category: 'Modern',
+    features: ['Frameless glass fencing', 'Geometric design', 'White pebble interior'],
+  },
+  {
+    src: '/images/pool-2.jpg',
+    title: 'Corinda',
+    desc: "Marble coping with frameless glass fencing — understated luxury that complements the home's architecture.",
+    category: 'Luxury',
+    features: ['Marble coping', 'Frameless glass fencing', 'Custom tiling'],
+  },
+  {
+    src: '/images/pool-3.jpg',
+    title: 'Hendra',
+    desc: 'A dynamic pool featuring a bespoke water feature and integrated automated pool cleaner for effortless maintenance.',
+    category: 'Family',
+    features: ['Water feature', 'Pool cleaner system', 'Family-sized design'],
+  },
+  {
+    src: '/images/pool-4.jpg',
+    title: 'Norman Park',
+    desc: 'Challenging slope solved with an out-of-ground block wall construction, curved stairs, and elegant glass fencing.',
+    category: 'Modern',
+    features: ['Out-of-ground block wall', 'Feature stairs', 'Glass fencing'],
+  },
+  {
+    src: '/images/pool-5.jpg',
+    title: 'Mitchelton',
+    desc: 'Striking mosaic tile waterline and highlighted step details that catch the light and elevate the everyday swim.',
+    category: 'Luxury',
+    features: ['Mosaic waterline tiles', 'Highlighted steps', 'Premium finish'],
+  },
+  {
+    src: '/images/pool-6.jpg',
+    title: 'Tingalpa',
+    desc: 'A complete backyard transformation featuring a mosaic-tiled waterline, decorative steps, and a standout water feature.',
+    category: 'Family',
+    features: ['Mosaic waterline', 'Decorative steps', 'Water feature'],
+  },
+  {
+    src: '/images/pool-7.jpg',
+    title: 'Rochdale',
+    desc: 'The ultimate backyard escape — an integrated spa with feature wall creates a resort-style experience at home.',
+    category: 'Luxury',
+    features: ['Integrated spa', 'Feature wall', 'Resort-style design'],
+  },
+  {
+    src: '/images/pool-gallery-1.png',
+    title: 'Brisbane Northside',
+    desc: 'Contemporary pool with clean lines, frameless glass fencing, and a generous shallow lounge area.',
+    category: 'Modern',
+    features: ['Contemporary design', 'Lounge area', 'Glass fencing'],
+  },
+  {
+    src: '/images/pool-gallery-2.png',
+    title: 'South Brisbane',
+    desc: 'Compact but beautifully proportioned — proving that small blocks can still deliver stunning results.',
+    category: 'Family',
+    features: ['Small block solution', 'Efficient design', 'Premium coping'],
+  },
+  {
+    src: '/images/pool-gallery-3.png',
+    title: 'Brisbane East',
+    desc: 'Statement coping and surrounds in natural travertine, paired with a mosaic feature wall for a luxe finish.',
+    category: 'Luxury',
+    features: ['Travertine coping', 'Mosaic feature wall', 'Premium surround'],
+  },
+  {
+    src: '/images/pool-gallery-4.png',
+    title: 'Brisbane West',
+    desc: 'Family pool with generous seating shelf, progressive depth entry steps, and durable pebblecrete interior.',
+    category: 'Family',
+    features: ['Seating shelf', 'Entry steps', 'Pebblecrete finish'],
+  },
+  {
+    src: '/images/pool-gallery-5.png',
+    title: 'Sunshine Coast',
+    desc: 'Coastal-inspired design with natural stone coping and lush tropical landscaping creating a resort atmosphere.',
+    category: 'Luxury',
+    features: ['Natural stone coping', 'Tropical design', 'Resort aesthetic'],
+  },
+];
+
+const categories = ['All', 'Modern', 'Luxury', 'Family'];
+---
+
+<BaseLayout
+  title="Pool Gallery — Completed Projects | Mediterranean Pools Qld"
+  description="Browse our gallery of completed custom concrete pools across Brisbane and Queensland. Modern, luxury, and family pool designs — all built by Mediterranean Pools."
+  keywords="pool gallery Brisbane, custom pool photos QLD, concrete pool examples Brisbane, luxury pool designs Queensland, pool before after Brisbane"
+>
+  <Header />
+
+  <!-- Page hero — light -->
+  <section class="relative pt-28 pb-14 bg-white overflow-hidden">
+    <div class="absolute inset-0 bg-dots opacity-50"></div>
+    <div class="relative z-10 container-custom">
+      <div class="max-w-3xl">
+        <p class="section-label mb-4 animate-fade-up" style="opacity:0;animation-fill-mode:forwards;">Our Portfolio</p>
+        <h1 class="section-heading mb-5 animate-fade-up" style="animation-delay:0.1s;opacity:0;animation-fill-mode:forwards;">
+          Completed Dream Pools
+        </h1>
+        <p class="font-sans text-stone-500 text-xl max-w-2xl animate-fade-up" style="animation-delay:0.2s;opacity:0;animation-fill-mode:forwards;">
+          Every project here started with a conversation. Browse our completed work and imagine what we could create for you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery grid -->
+  <section class="py-20 bg-white" aria-labelledby="gallery-heading">
+    <div class="container-custom">
+
+      <!-- Filter tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12" role="tablist" aria-label="Filter gallery by category">
+        {categories.map((cat) => (
+          <button
+            class={`gallery-filter px-5 py-2.5 rounded-full font-sans text-sm font-semibold transition-all ${cat === 'All' ? 'bg-navy-900 text-white shadow-xs' : 'bg-white border border-stone-200 text-stone-600 hover:border-aqua-300 hover:text-aqua-700'}`}
+            data-filter={cat}
+            role="tab"
+            aria-selected={cat === 'All'}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <h2 id="gallery-heading" class="sr-only">Project gallery</h2>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+        {projects.map((project) => (
+          <figure
+            class="gallery-item relative overflow-hidden rounded-2xl group cursor-pointer animate-on-scroll"
+            data-category={project.category}
+            data-lightbox
+            data-src={project.src}
+            data-caption={`${project.title} — ${project.desc}`}
+            role="button"
+            tabindex="0"
+            aria-label={`View ${project.title} project — ${project.category}`}
+          >
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src={project.src}
+                alt={`${project.title} pool project - ${project.desc}`}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                width="600"
+                height="450"
+              />
+            </div>
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/30 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-400">
+              <figcaption class="absolute bottom-0 left-0 right-0 p-6">
+                <div class="flex items-start justify-between mb-2">
+                  <span class="bg-aqua-500/90 text-white text-xs font-sans font-semibold px-3 py-1 rounded-full">{project.category}</span>
+                  <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                </div>
+                <p class="font-serif text-white text-xl mb-1">{project.title}</p>
+                <p class="font-sans text-white/70 text-xs leading-relaxed mb-3">{project.desc}</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {project.features.map((f) => (
+                    <span class="bg-white/15 text-white/80 text-xs font-sans px-2 py-0.5 rounded-full">{f}</span>
+                  ))}
+                </div>
+              </figcaption>
+            </div>
+
+            <!-- Always-visible title badge -->
+            <div class="absolute top-3 left-3">
+              <span class="bg-navy-950/70 backdrop-blur-sm text-white text-xs font-sans font-medium px-3 py-1.5 rounded-full">{project.title}</span>
+            </div>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-stone-50">
+    <div class="container-custom text-center animate-on-scroll">
+      <p class="section-label mb-3">Your Project Could Be Next</p>
+      <h2 class="section-heading mb-5">
+        Let's Create Something<br />
+        <em class="not-italic text-aqua-600">Extraordinary Together</em>
+      </h2>
+      <p class="font-sans text-stone-500 text-lg max-w-xl mx-auto mb-8">
+        Every pool in this gallery started with a conversation. Tell us your vision and we'll make it real.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="btn-primary text-base px-8 py-4">
+          Get Your Free Quote
+        </a>
+        <a href="tel:0403866061" class="btn-outline text-base px-8 py-4">
+          Call Brad: 0403 866 061
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button id="lightbox-close" class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-2xl transition-colors z-10" aria-label="Close image viewer">×</button>
+    <img id="lightbox-img" src="" alt="" class="relative z-10" />
+    <p id="lightbox-caption" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm font-sans text-center max-w-lg z-10"></p>
+  </div>
+
+  <!-- Gallery filter script -->
+  <script>
+    const filterBtns = document.querySelectorAll('.gallery-filter');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Update button states
+        filterBtns.forEach((b) => {
+          b.classList.remove('bg-navy-900', 'text-white', 'shadow-xs');
+          b.classList.add('bg-white', 'border', 'border-stone-200', 'text-stone-600');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('bg-navy-900', 'text-white', 'shadow-xs');
+        btn.classList.remove('bg-white', 'border', 'border-stone-200', 'text-stone-600');
+        btn.setAttribute('aria-selected', 'true');
+
+        // Filter items
+        galleryItems.forEach((item) => {
+          const category = item.getAttribute('data-category');
+          const el = /** @type {HTMLElement} */ (item);
+          if (filter === 'All' || category === filter) {
+            el.style.display = '';
+            setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'scale(1)'; }, 10);
+          } else {
+            el.style.opacity = '0';
+            el.style.transform = 'scale(0.95)';
+            setTimeout(() => { el.style.display = 'none'; }, 250);
+          }
+        });
+      });
+    });
+  </script>
+</BaseLayout>

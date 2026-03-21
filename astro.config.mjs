@@ -1,13 +1,13 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwind from "@astrojs/tailwind";
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
   integrations: [tailwind({ applyBaseStyles: false })],
-  output: 'static',
+  output: "static",
   // For GitHub Pages deployment, set your repo name here:
-  // base: '/mediterranean-pools',
-  site: 'https://mediterraneanpoolsqld.com.au',
+  // base: "/mediterranean-pools",
+  site: "https://mediterraneanpoolsqld.com.au",
   build: {
-    assets: '_assets',
+    assets: "_assets",
   },
 });

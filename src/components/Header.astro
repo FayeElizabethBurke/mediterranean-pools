@@ -8,13 +8,12 @@ const navLinks = [
 ];
 
 const currentPath = Astro.url.pathname;
-const isHome = currentPath === '/';
 ---
 
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50">
   <div
     id="header-inner"
-    class={`transition-all duration-300 ${isHome ? 'bg-transparent' : 'bg-white shadow-xs border-b border-stone-100'}`}
+    class="bg-white shadow-xs border-b border-stone-100 transition-shadow duration-300"
   >
     <div class="container-custom">
       <div class="flex items-center justify-between h-16 sm:h-18">
@@ -25,10 +24,10 @@ const isHome = currentPath === '/';
             <img src="/images/logo.png" alt="Mediterranean Pools Qld Logo" width="36" height="36" class="w-full h-full object-cover" />
           </div>
           <div class="leading-tight">
-            <span id="logo-name" class={`block font-serif text-lg leading-none transition-colors ${isHome ? 'text-white' : 'text-navy-900'}`}>
+            <span id="logo-name" class="block font-serif text-lg leading-none text-navy-900">
               Mediterranean Pools
             </span>
-            <span id="logo-sub" class={`block font-sans text-[10px] tracking-[0.2em] uppercase font-medium transition-colors ${isHome ? 'text-aqua-300' : 'text-aqua-600'}`}>
+            <span id="logo-sub" class="block font-sans text-[10px] tracking-[0.2em] uppercase font-medium text-aqua-600">
               Queensland
             </span>
           </div>
@@ -42,8 +41,8 @@ const isHome = currentPath === '/';
               id={`nav-${link.label.toLowerCase()}`}
               class={`px-4 py-2 font-sans text-sm font-medium rounded-lg transition-all duration-150 nav-link ${
                 currentPath === link.href
-                  ? isHome ? 'text-white bg-white/15' : 'text-aqua-600 bg-aqua-50'
-                  : isHome ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-stone-600 hover:text-navy-900 hover:bg-stone-100'
+                  ? 'text-aqua-600 bg-aqua-50'
+                  : 'text-stone-600 hover:text-navy-900 hover:bg-stone-100'
               }`}
               aria-current={currentPath === link.href ? 'page' : undefined}
             >
@@ -57,7 +56,7 @@ const isHome = currentPath === '/';
           <a
             href="tel:0403866061"
             id="header-phone"
-            class={`hidden md:flex items-center gap-2 font-sans text-sm font-medium transition-colors ${isHome ? 'text-white/80 hover:text-white' : 'text-stone-600 hover:text-navy-900'}`}
+            class="hidden md:flex items-center gap-2 font-sans text-sm font-medium text-stone-600 hover:text-navy-900 transition-colors"
             aria-label="Call Brad on 0403 866 061"
           >
             <svg class="w-4 h-4 text-aqua-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -74,7 +73,7 @@ const isHome = currentPath === '/';
           <button
             id="mobile-menu-btn"
             type="button"
-            class={`lg:hidden flex items-center justify-center w-10 h-10 rounded-xl transition-colors ${isHome ? 'text-white hover:bg-white/15' : 'text-navy-700 hover:bg-stone-100'}`}
+            class="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl transition-colors text-navy-700 hover:bg-stone-100"
             aria-expanded="false"
             aria-controls="mobile-menu"
             aria-label="Toggle navigation"
@@ -123,50 +122,6 @@ const isHome = currentPath === '/';
 </header>
 
 <script>
-  const header = document.getElementById('site-header');
-  const inner  = document.getElementById('header-inner');
-  const logoName = document.getElementById('logo-name');
-  const logoSub  = document.getElementById('logo-sub');
-  const phone    = document.getElementById('header-phone');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  // Only animate scroll effect on homepage (where header starts transparent)
-  const isHome = window.location.pathname === '/' || window.location.pathname === '';
-
-  function updateHeader() {
-    if (!isHome) return;
-    const scrolled = window.scrollY > 60;
-
-    if (scrolled) {
-      inner?.classList.add('bg-white', 'shadow-xs', 'border-b', 'border-stone-100');
-      inner?.classList.remove('bg-transparent');
-      if (logoName) { logoName.classList.remove('text-white'); logoName.classList.add('text-navy-900'); }
-      if (logoSub)  { logoSub.classList.remove('text-aqua-300'); logoSub.classList.add('text-aqua-600'); }
-      if (phone)    { phone.classList.remove('text-white/80', 'hover:text-white'); phone.classList.add('text-stone-600', 'hover:text-navy-900'); }
-      navLinks.forEach((el) => {
-        if (!el.classList.contains('bg-aqua-50')) {
-          el.classList.remove('text-white/80', 'hover:text-white', 'hover:bg-white/10');
-          el.classList.add('text-stone-600', 'hover:text-navy-900', 'hover:bg-stone-100');
-        }
-      });
-    } else {
-      inner?.classList.remove('bg-white', 'shadow-xs', 'border-b', 'border-stone-100');
-      inner?.classList.add('bg-transparent');
-      if (logoName) { logoName.classList.add('text-white'); logoName.classList.remove('text-navy-900'); }
-      if (logoSub)  { logoSub.classList.add('text-aqua-300'); logoSub.classList.remove('text-aqua-600'); }
-      if (phone)    { phone.classList.add('text-white/80', 'hover:text-white'); phone.classList.remove('text-stone-600', 'hover:text-navy-900'); }
-      navLinks.forEach((el) => {
-        if (!el.classList.contains('bg-aqua-50')) {
-          el.classList.add('text-white/80', 'hover:text-white', 'hover:bg-white/10');
-          el.classList.remove('text-stone-600', 'hover:text-navy-900', 'hover:bg-stone-100');
-        }
-      });
-    }
-  }
-
-  window.addEventListener('scroll', updateHeader, { passive: true });
-  updateHeader();
-
   // Mobile menu
   const btn  = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');

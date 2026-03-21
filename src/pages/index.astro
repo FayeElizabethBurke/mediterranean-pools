@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import QuoteForm from '../components/QuoteForm.astro';
+import { b } from '../utils/base';
 
 const stats = [
   { value: '30+', label: 'Years Experience' },
@@ -214,7 +215,7 @@ const faqs = [
     <!-- Right panel — pool image -->
     <div class="hidden lg:block lg:w-[48%] relative">
       <img
-        src="/images/hero-pool.jpg"
+        src={`${b}/images/hero-pool.jpg`}
         alt="Luxury custom concrete pool Brisbane"
         class="absolute inset-0 w-full h-full object-cover object-center"
         loading="eager"
@@ -330,7 +331,7 @@ const faqs = [
           <figure
             class="relative overflow-hidden rounded-2xl cursor-pointer group animate-on-scroll"
             data-lightbox
-            data-src={item.src}
+            data-src={`${b}${item.src}`}
             data-caption={`${item.title} — ${item.desc}`}
             role="button"
             tabindex="0"
@@ -338,7 +339,7 @@ const faqs = [
           >
             <div class="aspect-[4/3] overflow-hidden bg-stone-200">
               <img
-                src={item.src}
+                src={`${b}${item.src}`}
                 alt={`${item.title} pool — ${item.desc}`}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"
                 loading="lazy"
@@ -380,18 +381,18 @@ const faqs = [
         <div class="grid grid-cols-2 gap-4 animate-on-scroll">
           <div class="space-y-4">
             <div class="rounded-2xl overflow-hidden aspect-[3/4] bg-stone-100">
-              <img src="/images/pool-gallery-1.png" alt="Custom pool with water feature" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
+              <img src={`${b}/images/pool-gallery-1.png`} alt="Custom pool with water feature" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
             </div>
             <div class="rounded-2xl overflow-hidden aspect-square bg-stone-100">
-              <img src="/images/pool-gallery-3.png" alt="Premium pool coping" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="300" />
+              <img src={`${b}/images/pool-gallery-3.png`} alt="Premium pool coping" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="300" />
             </div>
           </div>
           <div class="space-y-4 mt-8">
             <div class="rounded-2xl overflow-hidden aspect-square bg-stone-100">
-              <img src="/images/pool-gallery-2.png" alt="Glass fenced pool Brisbane" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="300" />
+              <img src={`${b}/images/pool-gallery-2.png`} alt="Glass fenced pool Brisbane" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="300" />
             </div>
             <div class="rounded-2xl overflow-hidden aspect-[3/4] bg-stone-100">
-              <img src="/images/pool-gallery-4.png" alt="Modern pool construction" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
+              <img src={`${b}/images/pool-gallery-4.png`} alt="Modern pool construction" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
             </div>
           </div>
         </div>
@@ -548,7 +549,7 @@ const faqs = [
   <section class="relative py-24 overflow-hidden bg-navy-900" aria-labelledby="cta-heading">
     <!-- BG image -->
     <div class="absolute inset-0">
-      <img src="/images/pool-2.jpg" alt="" class="w-full h-full object-cover opacity-20" loading="lazy" aria-hidden="true" width="1920" height="600" />
+      <img src={`${b}/images/pool-2.jpg`} alt="" class="w-full h-full object-cover opacity-20" loading="lazy" aria-hidden="true" width="1920" height="600" />
       <div class="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-900/80 to-navy-900/60"></div>
     </div>
 

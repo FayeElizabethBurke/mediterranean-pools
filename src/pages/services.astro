@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { b } from '../utils/base';
 import QuoteForm from '../components/QuoteForm.astro';
 
 const services = [
@@ -142,7 +143,7 @@ const brands = [
           <article id={service.id} class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-on-scroll">
             <div class={`rounded-3xl overflow-hidden aspect-[4/3] bg-stone-200 shadow-card ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
               <img
-                src={service.image}
+                src={`${b}${service.image}`}
                 alt={service.imageAlt}
                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 loading="lazy"
@@ -206,7 +207,7 @@ const brands = [
   <!-- CTA -->
   <section class="py-20 bg-navy-900 relative overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/pool-1.jpg" alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" loading="lazy" width="1920" height="500" />
+      <img src={`${b}/images/pool-1.jpg`} alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" loading="lazy" width="1920" height="500" />
       <div class="absolute inset-0 bg-navy-900/80"></div>
     </div>
     <div class="relative z-10 container-custom">

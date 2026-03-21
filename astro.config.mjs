@@ -4,9 +4,8 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   integrations: [tailwind({ applyBaseStyles: false })],
   output: "static",
-  // For GitHub Pages deployment, set your repo name here:
-  // base: "/mediterranean-pools",
-  site: "https://mediterraneanpoolsqld.com.au",
+  base: "/mediterranean-pools",
+  site: "https://fayeelizabethburke.github.io",
   build: {
     assets: "_assets",
   },

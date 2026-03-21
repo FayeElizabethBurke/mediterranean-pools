@@ -121,8 +121,8 @@ const localBusinessSchema = {
   <meta name="twitter:image" content={fullOGImage} />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/images/logo.png" />
-  <link rel="apple-touch-icon" href="/images/logo.png" />
+  <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/images/logo.png`.replace('//', '/')} />
+  <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}/images/logo.png`.replace('//', '/')} />
 
   <!-- Fonts (preloaded) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

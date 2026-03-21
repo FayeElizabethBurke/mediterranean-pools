@@ -1,8 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import QuoteForm from '../components/QuoteForm.astro';
+import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import { b } from '../utils/base';
 
 const stats = [
@@ -215,7 +214,7 @@ const faqs = [
     <!-- Right panel — pool image -->
     <div class="hidden lg:block lg:w-[48%] relative">
       <img
-        src={`${b}/images/hero-pool.jpg`}
+        src={`${b}/images/pool-3.jpg`}
         alt="Luxury custom concrete pool Brisbane"
         class="absolute inset-0 w-full h-full object-cover object-center"
         loading="eager"
@@ -306,7 +305,7 @@ const faqs = [
       </div>
 
       <div class="text-center mt-10 animate-on-scroll">
-        <a href="/services" class="btn-outline">View All Services</a>
+        <a href={`${b}/services`} class="btn-outline">View All Services</a>
       </div>
     </div>
   </section>
@@ -323,7 +322,7 @@ const faqs = [
             Dream Pools, <em class="not-italic text-aqua-600">Delivered</em>
           </h2>
         </div>
-        <a href="/gallery" class="btn-outline flex-shrink-0 self-start sm:self-auto">View All Projects</a>
+        <a href={`${b}/gallery`} class="btn-outline flex-shrink-0 self-start sm:self-auto">View All Projects</a>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
@@ -428,7 +427,7 @@ const faqs = [
           </div>
 
           <div class="mt-9">
-            <a href="/about" class="btn-outline">Our Full Story</a>
+            <a href={`${b}/about`} class="btn-outline">Our Full Story</a>
           </div>
         </div>
       </div>
@@ -570,7 +569,7 @@ const faqs = [
               </svg>
               Call Brad: 0403 866 061
             </a>
-            <a href="/contact" class="btn-white">Get a Quote Online</a>
+            <a href={`${b}/contact`} class="btn-white">Get a Quote Online</a>
           </div>
         </div>
 

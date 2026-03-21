@@ -9,7 +9,8 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const currentPath = Astro.url.pathname;
+// Strip base prefix so we can compare against plain link hrefs like '/about'
+const currentPath = Astro.url.pathname.replace(b, '') || '/';
 ---
 
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50">
@@ -21,7 +22,7 @@ const currentPath = Astro.url.pathname;
       <div class="flex items-center justify-between h-16 sm:h-18">
 
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-3 group" aria-label="Mediterranean Pools Qld — Home">
+        <a href={`${b}/`} class="flex items-center gap-3 group" aria-label="Mediterranean Pools Qld — Home">
           <div class="w-9 h-9 rounded-full overflow-hidden ring-2 ring-white/30 group-hover:ring-aqua-300 transition-colors flex-shrink-0">
             <img src={`${b}/images/logo.png`} alt="Mediterranean Pools Qld Logo" width="36" height="36" class="w-full h-full object-cover" />
           </div>
@@ -39,7 +40,7 @@ const currentPath = Astro.url.pathname;
         <nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
           {navLinks.map((link) => (
             <a
-              href={link.href}
+              href={`${b}${link.href}`}
               id={`nav-${link.label.toLowerCase()}`}
               class={`px-4 py-2 font-sans text-sm font-medium rounded-lg transition-all duration-150 nav-link ${
                 currentPath === link.href
@@ -67,7 +68,7 @@ const currentPath = Astro.url.pathname;
             <span>0403 866 061</span>
           </a>
 
-          <a href="/contact" class="btn-primary text-sm px-5 py-2.5 hidden sm:inline-flex">
+          <a href={`${b}/contact`} class="btn-primary text-sm px-5 py-2.5 hidden sm:inline-flex">
             Get a Free Quote
           </a>
 
@@ -98,7 +99,7 @@ const currentPath = Astro.url.pathname;
         <nav class="flex flex-col gap-1 mb-4">
           {navLinks.map((link) => (
             <a
-              href={link.href}
+              href={`${b}${link.href}`}
               class={`px-4 py-3 font-sans text-sm font-medium rounded-xl transition-all ${
                 currentPath === link.href
                   ? 'text-aqua-600 bg-aqua-50'
@@ -116,7 +117,7 @@ const currentPath = Astro.url.pathname;
             </svg>
             Call Brad: 0403 866 061
           </a>
-          <a href="/contact" class="btn-primary justify-center">Get a Free Quote</a>
+          <a href={`${b}/contact`} class="btn-primary justify-center">Get a Free Quote</a>
         </div>
       </div>
     </div>

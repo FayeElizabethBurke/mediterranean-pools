@@ -83,7 +83,7 @@ const services = [
       'New fencing and updated surrounds',
       'Equipment upgrades: pumps, filters, chlorinators',
     ],
-    image: '/images/pool-5.jpg',
+    image: '/images/pool-luxury.png',
     imageAlt: 'Pool renovation Brisbane QLD',
   },
   {
@@ -201,6 +201,52 @@ const brands = [
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- Products & Materials -->
+  <section class="py-16 bg-stone-50" aria-labelledby="products-heading">
+    <div class="container-custom">
+      <div class="text-center mb-12 animate-on-scroll">
+        <p class="section-label mb-2">Products & Materials</p>
+        <h2 id="products-heading" class="font-serif text-navy-900 text-3xl mb-4">What We Supply & Install</h2>
+        <p class="font-sans text-stone-500 text-base max-w-2xl mx-auto">
+          We source premium products from trusted suppliers to ensure your pool looks exceptional and performs for years to come.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger-children">
+        {[
+          {
+            title: 'Pool Tiles',
+            desc: 'Mosaic waterline tiles, feature tiles, and full-surface options in glass, ceramic, and stone finishes. Available in a wide range of colours and textures.',
+            icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"/></svg>`,
+          },
+          {
+            title: 'Pebble Interiors',
+            desc: 'Pebblecrete and exposed aggregate finishes for pool shells — durable, slip-resistant, and available in a stunning range of natural tones and colours.',
+            icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>`,
+          },
+          {
+            title: 'Filtration Systems',
+            desc: 'High-performance pumps, filters, and salt water chlorination systems from leading brands — engineered for efficiency and long-term reliability.',
+            icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>`,
+          },
+          {
+            title: 'Pool Heaters',
+            desc: 'Gas, heat pump, and solar heating solutions so you can enjoy your pool year-round. We recommend and install the right system for your pool size and usage.',
+            icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>`,
+          },
+        ].map((product) => (
+          <div class="card p-6 animate-on-scroll">
+            <div class="w-10 h-10 rounded-xl bg-aqua-50 flex items-center justify-center text-aqua-600 mb-4" set:html={product.icon} />
+            <h3 class="font-serif text-navy-900 text-lg mb-2">{product.title}</h3>
+            <p class="font-sans text-stone-500 text-sm leading-relaxed">{product.desc}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center font-sans text-stone-400 text-sm mt-8 animate-on-scroll">
+        Ask us about specific brands, colours, and ranges during your free consultation.
+      </p>
     </div>
   </section>
 

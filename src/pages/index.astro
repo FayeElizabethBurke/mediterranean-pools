@@ -8,7 +8,7 @@ const stats = [
   { value: '30+', label: 'Years Experience' },
   { value: '200+', label: 'Pools Built' },
   { value: '5★', label: 'Client Satisfaction' },
-  { value: 'SEQ', label: 'Brisbane & Beyond' },
+  { value: '100%', label: 'Hands-On Approach' },
 ];
 
 const services = [
@@ -52,10 +52,10 @@ const services = [
 
 const galleryItems = [
   { src: '/images/pool-1.jpg', title: 'Cashmere', desc: 'Glass & aluminium fencing, clean geometric lines', category: 'Modern' },
-  { src: '/images/pool-2.jpg', title: 'Corinda', desc: 'Marble coping with frameless glass fencing', category: 'Luxury' },
-  { src: '/images/pool-3.jpg', title: 'Hendra', desc: 'Water feature + automated pool cleaner', category: 'Family' },
+  { src: '/images/corinda.jpg', title: 'Corinda', desc: 'Marble coping with frameless glass fencing', category: 'Luxury' },
+  { src: '/images/hendra.png', title: 'Hendra', desc: 'Water feature + automated pool cleaner', category: 'Family' },
   { src: '/images/pool-4.jpg', title: 'Norman Park', desc: 'Out-of-ground block wall, stairs & glass fence', category: 'Modern' },
-  { src: '/images/pool-5.jpg', title: 'Mitchelton', desc: 'Mosaic tiles to waterline & highlight steps', category: 'Luxury' },
+  { src: '/images/pool-luxury.png', title: 'Mitchelton', desc: 'Mosaic tiles to waterline & highlight steps', category: 'Luxury' },
   { src: '/images/pool-6.jpg', title: 'Tingalpa', desc: 'Mosaic waterline, steps & statement water feature', category: 'Family' },
 ];
 
@@ -79,7 +79,7 @@ const faqs = [
   },
   {
     q: 'What areas of Queensland do you service?',
-    a: 'We primarily service Brisbane and surrounds, including the Sunshine Coast, Gold Coast, and South East Queensland. Contact us with your suburb to confirm.',
+    a: 'We service Brisbane Northside and Southside, and surrounding suburbs. Contact us with your suburb to confirm we can help.',
   },
   {
     q: "Why choose concrete over fibreglass?",
@@ -99,7 +99,7 @@ const faqs = [
 <BaseLayout
   title="Custom Concrete Pools Brisbane | Mediterranean Pools Qld"
   description="Brisbane's premium custom concrete pool builders. Over 30 years experience delivering luxury inground pools, water features & pool fencing across Queensland. Free quotes."
-  keywords="concrete pools Brisbane, custom pools Queensland, inground pool builders Brisbane, luxury pools QLD, pool construction Brisbane"
+  keywords="pool builder Brisbane, pools Brisbane, concrete pools Brisbane, inground pool builders Brisbane, custom pools Queensland"
 >
   <Header />
 
@@ -115,7 +115,7 @@ const faqs = [
         <!-- Badge -->
         <div class="inline-flex items-center gap-2 bg-aqua-50 border border-aqua-200 rounded-full px-4 py-1.5 mb-6">
           <span class="w-2 h-2 bg-aqua-500 rounded-full animate-pulse flex-shrink-0"></span>
-          <span class="font-sans text-xs font-semibold text-aqua-700 tracking-wide uppercase">Brisbane & South East QLD</span>
+          <span class="font-sans text-xs font-semibold text-aqua-700 tracking-wide uppercase">Brisbane Northside & Southside</span>
         </div>
 
         <h1 class="font-serif text-navy-900 text-4xl sm:text-5xl leading-[1.1] mb-5">
@@ -380,18 +380,18 @@ const faqs = [
         <div class="grid grid-cols-2 gap-4 animate-on-scroll">
           <div class="space-y-4">
             <div class="rounded-2xl overflow-hidden bg-stone-100">
-              <img src={`${b}/images/pool-gallery-1.png`} alt="Custom pool with water feature" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="400" height="400" />
+              <img src={`${b}/images/pool-7.jpg`} alt="Custom pool with water feature" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="400" height="400" />
             </div>
             <div class="rounded-2xl overflow-hidden bg-stone-100">
-              <img src={`${b}/images/pool-gallery-3.png`} alt="Premium pool coping" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
+              <img src={`${b}/images/pool-feature.png`} alt="Premium pool coping" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
             </div>
           </div>
           <div class="space-y-4">
             <div class="rounded-2xl overflow-hidden bg-stone-100">
-              <img src={`${b}/images/pool-gallery-2.png`} alt="Glass fenced pool Brisbane" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
+              <img src={`${b}/images/pool-4.jpg`} alt="Glass fenced pool Brisbane" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
             </div>
             <div class="rounded-2xl overflow-hidden bg-stone-100">
-              <img src={`${b}/images/pool-gallery-4.png`} alt="Modern pool construction" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
+              <img src={`${b}/images/pool-luxury.png`} alt="Modern pool construction" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="300" height="400" />
             </div>
           </div>
         </div>
@@ -412,7 +412,7 @@ const faqs = [
               { title: '30+ Years of Craft', body: "Brad's decades of hands-on experience means you're getting deep expertise, not guesswork — reflected in every pool we build." },
               { title: 'Fully Custom — No Shortcuts', body: 'Every pool is designed specifically for your block, lifestyle, and vision. No cookie-cutter shapes, no off-the-shelf finishes.' },
               { title: 'Transparent Pricing', body: 'Detailed, itemised quotes upfront. No hidden costs, no nasty surprises at handover. Honest business, always.' },
-              { title: 'Local, Family-Owned', body: "South Brisbane based — we know Queensland's climate, soil, and council requirements. We're your neighbours, not a franchise." },
+              { title: 'Personalised, Hands-On', body: "Greenbank based, Brisbane focused — Brad is personally involved in every project. You deal directly with the builder, not a middleman." },
             ].map((r, i) => (
               <div class="flex gap-4">
                 <div class="w-8 h-8 rounded-full bg-aqua-50 border border-aqua-200 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -464,9 +464,9 @@ const faqs = [
   </section>
 
   <!-- ═══════════════════════════════════════════════
-       TESTIMONIALS
+       TESTIMONIALS (hidden — uncomment to restore)
   ════════════════════════════════════════════════ -->
-  <section class="py-20 bg-white" aria-labelledby="testimonials-heading">
+  {/* <section class="py-20 bg-white" aria-labelledby="testimonials-heading">
     <div class="container-custom">
       <div class="text-center mb-14 animate-on-scroll">
         <p class="section-label mb-3">Client Stories</p>
@@ -510,7 +510,7 @@ const faqs = [
         ))}
       </div>
     </div>
-  </section>
+  </section> */}
 
   <!-- ═══════════════════════════════════════════════
        FAQ

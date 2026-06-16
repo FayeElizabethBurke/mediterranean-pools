@@ -4,8 +4,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   integrations: [tailwind({ applyBaseStyles: false })],
   output: "static",
-  base: "/mediterranean-pools",
-  site: "https://fayeelizabethburke.github.io",
+  site: "https://mediterraneanpoolsqld.com.au",
   build: {
     assets: "_assets",
   },

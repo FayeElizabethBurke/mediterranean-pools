@@ -23,9 +23,7 @@ const currentPath = Astro.url.pathname.replace(b, '') || '/';
 
         <!-- Logo -->
         <a href={`${b}/`} class="flex items-center gap-3 group" aria-label="Mediterranean Pools Qld — Home">
-          <div class="w-9 h-9 rounded-full overflow-hidden ring-2 ring-white/30 group-hover:ring-aqua-300 transition-colors flex-shrink-0">
-            <img src={`${b}/images/logo.png`} alt="Mediterranean Pools Qld Logo" width="36" height="36" class="w-full h-full object-cover" />
-          </div>
+          <img src={`${b}/images/logo.png`} alt="Mediterranean Pools Qld Logo" height="36" class="h-9 w-auto flex-shrink-0" />
           <div class="leading-tight">
             <span id="logo-name" class="block font-serif text-lg leading-none text-navy-900">
               Mediterranean Pools
